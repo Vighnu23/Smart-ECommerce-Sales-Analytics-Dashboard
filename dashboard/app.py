@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+from pathlib import Path
 st.set_page_config(
     page_title="Smart E-Commerce Sales Analytics Dashboard",
     page_icon="📊",
@@ -8,7 +8,10 @@ st.set_page_config(
 )
 
 st.title("📊 Smart E-Commerce Sales Analytics Dashboard")
-df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_PATH = BASE_DIR / "dataset" / "Enhanced_Superstore.csv"
+
+df = pd.read_csv(DATA_PATH)
 st.markdown(
     """
 Welcome to the **Smart E-Commerce Sales Analytics Dashboard**.
