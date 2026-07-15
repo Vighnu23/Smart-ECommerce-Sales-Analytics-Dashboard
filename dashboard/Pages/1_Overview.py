@@ -12,7 +12,7 @@ st.title("📊 Overview Dashboard")
 st.markdown("High-level overview of sales performance and business metrics.")
 
 # Load Dataset
-df = pd.read_csv("E:/ECommerce_Sales_Analysis/dataset/Enhanced_Superstore.csv")
+df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
 df["Order Date"] = pd.to_datetime(
     df["Order Date"],
     format="%d-%m-%Y"
@@ -89,7 +89,7 @@ with left:
         text_auto=True
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
     top_category = category_sales.loc[category_sales["Sales"].idxmax()]
 
@@ -115,7 +115,7 @@ with right:
         text_auto=True
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     top_region = region_profit.loc[region_profit["Profit"].idxmax()]
 
     st.info(
@@ -141,7 +141,7 @@ with left:
         hole=0.4
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     top_segment = segment_sales.loc[segment_sales["Sales"].idxmax()]
 
     st.info(
@@ -167,7 +167,7 @@ with right:
         hole=0.4
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     top_payment = payment.loc[payment["Count"].idxmax()]
 
     st.info(

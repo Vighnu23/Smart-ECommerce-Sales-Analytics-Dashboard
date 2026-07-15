@@ -15,7 +15,7 @@ st.markdown("Analyze order performance and sales trends over time.")
 # Load Dataset
 # ----------------------------
 
-df = pd.read_csv("E:/ECommerce_Sales_Analysis/dataset/Enhanced_Superstore.csv")
+df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
 df["Order Date"] = pd.to_datetime(
     df["Order Date"],
     format="%d-%m-%Y"
@@ -91,7 +91,7 @@ with left:
         hole=0.4
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     top_delivery = delivery.loc[delivery["Count"].idxmax()]
 
     st.info(
@@ -119,7 +119,7 @@ with right:
         hole=0.4
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig,  width='stretch')
     top_festival = festival_orders.loc[festival_orders["Orders"].idxmax()]
 
     st.info(
@@ -147,7 +147,7 @@ fig = px.bar(
     text_auto=True
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig,  width='stretch')
 best_ship = ship_sales.loc[ship_sales["Sales"].idxmax()]
 
 st.info(
@@ -174,7 +174,7 @@ fig = px.line(
     markers=True
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig,  width='stretch')
 best_month = monthly_sales.loc[monthly_sales["Sales"].idxmax()]
 
 st.info(
@@ -204,7 +204,7 @@ fig = px.bar(
     color="Year"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig,  width='stretch')
 best_year = yearly_sales.loc[yearly_sales["Sales"].idxmax()]
 
 st.info(

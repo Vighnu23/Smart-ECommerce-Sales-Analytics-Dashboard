@@ -12,7 +12,7 @@ st.title("📦 Product Analysis")
 st.markdown("Analyze product performance based on Sales, Profit and Quantity.")
 
 # Load Dataset
-df = pd.read_csv("E:/ECommerce_Sales_Analysis/dataset/Enhanced_Superstore.csv")
+df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
 df["Order Date"] = pd.to_datetime(
     df["Order Date"],
     format="%d-%m-%Y"
@@ -66,7 +66,7 @@ fig = px.bar(
     color="Sales"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 top_sub = sales_sub.loc[sales_sub["Sales"].idxmax()]
 
 st.info(
@@ -95,7 +95,7 @@ fig = px.bar(
     color="Profit"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig,  width='stretch')
 top_profit_sub = profit_sub.loc[profit_sub["Profit"].idxmax()]
 
 st.info(
@@ -122,7 +122,7 @@ fig = px.bar(
     color="Category"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 top_qty = qty.loc[qty["Quantity"].idxmax()]
 
 st.info(

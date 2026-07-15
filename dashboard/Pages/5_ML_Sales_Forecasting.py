@@ -20,16 +20,62 @@ monthly sales data.
 )
 
 # Load Dataset
-df = pd.read_csv(
-    "E:/ECommerce_Sales_Analysis/dataset/Enhanced_Superstore.csv"
+df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
+
+# Sidebar Filters
+st.sidebar.header("🔎 Filters")
+
+# Region Filter
+region = st.sidebar.multiselect(
+    "Select Region",
+    options=df["Region"].unique(),
+    default=df["Region"].unique()
 )
+
+# Category Filter
+category = st.sidebar.multiselect(
+    "Select Category",
+    options=df["Category"].unique(),
+    default=df["Category"].unique()
+)
+
+# Segment Filter
+segment = st.sidebar.multiselect(
+    "Select Segment",
+    options=df["Segment"].unique(),
+    default=df["Segment"].unique()
+)
+
+
+# Apply Filters
+df = df[
+    (df["Region"].isin(region)) &
+    (df["Category"].isin(category)) &
+    (df["Segment"].isin(segment))
+]
 
 # Convert Order Date to datetime
 df["Order Date"] = pd.to_datetime(
     df["Order Date"],
     format="%d-%m-%Y"
 )
+year = st.sidebar.multiselect(
+    "Select Year",
+    options=df["Order Date"].dt.year.unique(),
+    default=sorted(df["Order Date"].dt.year.unique())
+)
 
+df = df[df["Order Date"].dt.year.isin(year)]
+# Download Filtered Data
+
+csv = df.to_csv(index=False).encode("utf-8")
+
+st.sidebar.download_button(
+    label="📥 Download Filtered Data",
+    data=csv,
+    file_name="Filtered_Sales_Data.csv",
+    mime="text/csv"
+)
 # Monthly Sales
 monthly_sales = (
     df.groupby(pd.Grouper(key="Order Date", freq="ME"))["Sales"]

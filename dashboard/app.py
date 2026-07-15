@@ -7,7 +7,7 @@ st.set_page_config(
 )
 
 st.title("📊 Smart E-Commerce Sales Analytics Dashboard")
-df = pd.read_csv("E:/ECommerce_Sales_Analysis/dataset/Enhanced_Superstore.csv")
+df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
 
 st.markdown(
     """

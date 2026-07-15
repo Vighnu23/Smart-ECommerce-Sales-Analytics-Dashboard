@@ -15,7 +15,7 @@ st.markdown("Analyze sales and profit performance across regions and states.")
 # Load Dataset
 # ----------------------------
 
-df = pd.read_csv("E:/ECommerce_Sales_Analysis/dataset/Enhanced_Superstore.csv")
+df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
 df["Order Date"] = pd.to_datetime(
     df["Order Date"],
     format="%d-%m-%Y"
@@ -87,7 +87,7 @@ fig = px.bar(
     color="Sales"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig,  width='stretch')
 best_state = top_sales.iloc[-1]
 
 st.info(
@@ -120,7 +120,7 @@ fig = px.bar(
     color="Profit"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig,  width='stretch')
 best_profit = top_profit.iloc[-1]
 
 st.info(
@@ -149,7 +149,7 @@ fig = px.bar(
     color="Region"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 top_region = region_profit.loc[region_profit["Profit"].idxmax()]
 
 st.info(
