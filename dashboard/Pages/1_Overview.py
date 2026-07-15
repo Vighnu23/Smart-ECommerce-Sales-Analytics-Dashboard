@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-
+import os
 st.set_page_config(
     page_title="Overview",
     page_icon="📊",
@@ -12,7 +12,15 @@ st.title("📊 Overview Dashboard")
 st.markdown("High-level overview of sales performance and business metrics.")
 
 # Load Dataset
-df = pd.read_csv("../dataset/Enhanced_Superstore.csv")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+DATA_PATH = os.path.join(
+    BASE_DIR,
+    "dataset",
+    "Enhanced_Superstore.csv"
+)
+
+df = pd.read_csv(DATA_PATH)
 df["Order Date"] = pd.to_datetime(
     df["Order Date"],
     format="%d-%m-%Y"
