@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import os
+from pathlib import Path
 st.set_page_config(
     page_title="Regional Analysis",
     page_icon="🌍",
@@ -15,13 +15,8 @@ st.markdown("Analyze sales and profit performance across regions and states.")
 # Load Dataset
 # ----------------------------
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-DATA_PATH = os.path.join(
-    BASE_DIR,
-    "dataset",
-    "Enhanced_Superstore.csv"
-)
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = BASE_DIR / "dataset" / "Enhanced_Superstore.csv"
 
 df = pd.read_csv(DATA_PATH)
 
